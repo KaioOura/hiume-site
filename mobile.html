@@ -731,9 +731,10 @@ function openProduct(id, fromHash) {
     btn.textContent = 'Esgotado';
     btn.disabled = true;
   } else {
-    btn.textContent = 'Adicionar \u00e0 sacola';
-    btn.disabled = false;
-    btn.onclick = (function(prod){ return function(){ addToCart(prod); }; })(p);
+    var inCart = cart.some(function(i){ return i.id === p.id; });
+    btn.textContent = inCart ? 'J\u00e1 na sacola' : 'Adicionar \u00e0 sacola';
+    btn.disabled = inCart;
+    if (!inCart) btn.onclick = (function(prod){ return function(){ addToCart(prod); }; })(p);
   }
 
   go('detail', 'product-' + p.id);
@@ -829,9 +830,10 @@ function renderOrderStatus(order) {
 
 // \u2500\u2500 CART \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
 function addToCart(p) {
-  var item = null;
-  for (var i = 0; i < cart.length; i++) { if (cart[i].id === p.id) { item = cart[i]; break; } }
-  if (item) { item.qty++; } else { cart.push({ id: p.id, product: p, qty: 1 }); }
+  for (var i = 0; i < cart.length; i++) {
+    if (cart[i].id === p.id) { showToast('Item j\u00e1 est\u00e1 na sua sacola'); return; }
+  }
+  cart.push({ id: p.id, product: p, qty: 1 });
   updateCartBadge();
   showToast(p.name + ' adicionado \u00e0 sacola');
 }
