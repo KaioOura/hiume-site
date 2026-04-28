@@ -6,6 +6,10 @@
 <title id="page-title"></title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <script>
+// Redireciona mobile para mobile.html
+if (window.innerWidth < 768 && !location.pathname.includes('mobile')) {
+  location.replace('mobile.html' + location.search + location.hash);
+}
 // Roda antes do body renderizar — esconde a home se a URL já aponta para outra tela
 (function(){
   const h = location.hash;

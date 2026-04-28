@@ -288,6 +288,11 @@
 <div class="toast" id="toast"></div>
 
 <script>
+// Redireciona desktop para index.html
+if (window.innerWidth >= 768) {
+  location.replace('index.html' + location.search + location.hash);
+}
+
 var API = 'https://clothing-site-production.up.railway.app';
 var products = [], cart = [], navHistory = [], current = 'home';
 var currentProduct = null, imgIndex = 0;
