@@ -557,6 +557,16 @@ if (window.innerWidth >= 768) {
   location.replace('index.html' + location.search + location.hash);
 }
 
+// Esconde a home imediatamente se o hash apontar para outra tela,
+// evitando o flash da home antes dos produtos carregarem
+(function() {
+  var hash = location.hash.replace('#', '');
+  if (hash && hash !== 'home') {
+    var el = document.getElementById('screen-home');
+    if (el) el.classList.remove('active');
+  }
+})();
+
 var API = 'https://clothing-site-production.up.railway.app';
 var products = [], cart = [], current = 'home';
 var currentProduct = null, imgIndex = 0;
