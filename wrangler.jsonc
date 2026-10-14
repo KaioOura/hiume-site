@@ -5,5 +5,12 @@
   "compatibility_date": "2026-10-01",
   "assets": {
     "directory": "./"
-  }
+  },
+  // Dominio proprio declarado aqui para o deploy nao depender so do painel.
+  "routes": [
+    { "pattern": "hiume.com.br", "custom_domain": true }
+  ],
+  // So hiume.com.br serve o site: sem copia em workers.dev nem URLs de preview.
+  "workers_dev": false,
+  "preview_urls": false
 }
