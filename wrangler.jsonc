@@ -1,0 +1,9 @@
+{
+  // Cloudflare Workers com arquivos estaticos: publica a raiz do repo.
+  // "name" precisa ser igual ao nome do projeto criado no painel do Cloudflare.
+  "name": "hiume",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./"
+  }
+}
