@@ -2,8 +2,15 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Off Clothing Bath</title>
+  <script>try{if(top!==self)top.location=self.location}catch(e){document.documentElement.remove()}</script>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://clothing-site-production.up.railway.app https://viacep.com.br; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">hiume</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#6E2539">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
@@ -248,6 +255,16 @@
     .btn-place { width: 100%; background: var(--text); color: #fff; border: none; border-radius: 30px; padding: 17px; font-size: 14px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; cursor: pointer; }
     .btn-place:disabled { background: #ccc; cursor: default; }
     .secure-note { font-size: 11px; color: var(--text-off); text-align: center; margin-top: 8px; }
+    .cta-legal { font-size: 10.5px; line-height: 1.5; color: var(--text-off); text-align: center; margin-top: 6px; }
+
+    /* RODAPE LEGAL */
+    .site-footer { border-top: 1px solid var(--border); background: var(--white); padding: 28px 20px calc(28px + env(safe-area-inset-bottom, 0px)); }
+    .footer-brand { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: .18em; text-transform: uppercase; color: var(--text); margin-bottom: 14px; }
+    .legal p { font-size: 11.5px; line-height: 1.65; color: var(--text-off); margin-bottom: 10px; }
+    .legal p:last-child { margin-bottom: 0; }
+    .legal strong { color: var(--text); font-weight: 600; }
+    .legal a { color: var(--text); text-decoration: underline; text-underline-offset: 2px; }
+    .footer-meta { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-off); }
 
     /* LOADING OVERLAY */
     .loading-overlay { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(17,17,17,.55); align-items: center; justify-content: center; }
@@ -321,7 +338,7 @@
       <line x1="3" y1="18" x2="21" y2="18"/>
     </svg>
   </button>
-  <div class="header-logo" onclick="go('home')" style="cursor:pointer">Off Clothing Bath</div>
+  <div class="header-logo brand-name" onclick="go('home')" style="cursor:pointer">hiume</div>
   <div class="header-right">
     <button class="header-btn" onclick="goToCart()" aria-label="Sacola">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -377,6 +394,18 @@
     </div>
   </div>
   <div style="height:48px"></div>
+
+  <!-- RODAPE LEGAL -->
+  <footer class="site-footer">
+    <div class="footer-brand brand-name">hiume</div>
+    <div class="legal">
+      <p>Em conformidade com o C&oacute;digo de Defesa do Consumidor, voc&ecirc; tem direito ao arrependimento em at&eacute; <strong>7 dias corridos</strong> ap&oacute;s o recebimento do produto, com devolu&ccedil;&atilde;o integral do valor pago.</p>
+      <p>Seus dados pessoais s&atilde;o coletados exclusivamente para processar o seu pedido e n&atilde;o s&atilde;o compartilhados com terceiros, conforme a <strong>Lei Geral de Prote&ccedil;&atilde;o de Dados (LGPD &mdash; Lei n&ordm; 13.709/2018)</strong>. Para corrigir ou excluir seus dados, escreva para o e-mail abaixo.</p>
+      <p>Pe&ccedil;as de brech&oacute; s&atilde;o &uacute;nicas e seminovas. Vendas realizadas por pessoa f&iacute;sica.</p>
+      <p>Contato: <a href="mailto:contato@hiume.com.br">contato@hiume.com.br</a></p>
+    </div>
+    <div class="footer-meta">&copy; <span id="footer-year"></span> <span class="brand-name">hiume</span> &mdash; Todos os direitos reservados</div>
+  </footer>
 </div>
 
 <!-- PRODUCT DETAIL -->
@@ -483,6 +512,7 @@
   <div class="checkout-cta">
     <button class="btn-place" id="btn-place" onclick="placeOrder()"><span id="btn-place-text">Confirmar e pagar</span></button>
     <p class="secure-note">&#128274; Pagamento processado pelo Mercado Pago</p>
+    <p class="cta-legal">Voc&ecirc; tem direito ao arrependimento em at&eacute; 7 dias corridos ap&oacute;s receber o produto, com devolu&ccedil;&atilde;o integral do valor pago.</p>
   </div>
 </div>
 
@@ -535,7 +565,7 @@
 <!-- DRAWER -->
 <div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
 <div class="drawer" id="drawer">
-  <div class="drawer-top"><div class="drawer-brand">Off Clothing Bath</div></div>
+  <div class="drawer-top"><div class="drawer-brand brand-name">hiume</div></div>
   <nav class="drawer-nav">
     <button class="drawer-item" onclick="jumpTo('carousel-new')"><span class="drawer-icon">&#10022;</span> Novidades</button>
     <button class="drawer-item" onclick="jumpTo('carousel-sale')"><span class="drawer-icon">%</span> Em Promo&ccedil;&atilde;o</button>
@@ -567,6 +597,12 @@ if (window.innerWidth >= 768) {
   }
 })();
 
+// -- NOME DA MARCA: altere aqui para mudar em toda a versao mobile --
+var BRAND_NAME = 'hiume';
+document.getElementById('page-title').textContent = BRAND_NAME;
+document.querySelectorAll('.brand-name').forEach(function(el) { el.textContent = BRAND_NAME; });
+document.getElementById('footer-year').textContent = new Date().getFullYear();
+
 var API = 'https://clothing-site-production.up.railway.app';
 var products = [], cart = [], current = 'home';
 var currentProduct = null, imgIndex = 0;
@@ -581,7 +617,7 @@ var ORDER_STEPS = [
 
 // \u2500\u2500 UTILS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
 function fmt(n) { return 'R$ ' + Number(n).toFixed(2).replace('.', ','); }
-function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
 function firstImage(p) {
   if (!p.images) return null;
   var list = p.images.split('\n').map(function(s){ return s.trim(); }).filter(Boolean);
@@ -1198,6 +1234,7 @@ function submitOrder() {
       hideLoading();
       btn.disabled = false;
       btn.textContent = 'Confirmar e pagar';
+      if (/Cupom/.test(err.message)) { couponApplied = false; renderOrderSummary(); }
       showToast('Erro ao iniciar pagamento: ' + err.message);
     });
 }

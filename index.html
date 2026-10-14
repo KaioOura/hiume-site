@@ -2,8 +2,15 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<script>try{if(top!==self)top.location=self.location}catch(e){document.documentElement.remove()}</script>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://clothing-site-production.up.railway.app https://viacep.com.br; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title id="page-title"></title>
+<title id="page-title">hiume</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#6E2539">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <script>
 // Redireciona mobile para mobile.html
@@ -913,7 +920,7 @@ footer{background:var(--dark);padding:60px 48px 32px;}
 <!-- ─── JAVASCRIPT ───────────────────────────────────────────────────── -->
 <script>
 // ════════════════════════════════════════════════════════════════
-// MAPA DO SISTEMA — Off Closet Bath
+// MAPA DO SISTEMA — hiume
 // ════════════════════════════════════════════════════════════════
 // STACK
 //   Frontend : este arquivo (index.html) — Netlify (arrastar pasta)
@@ -976,7 +983,7 @@ footer{background:var(--dark);padding:60px 48px 32px;}
 // ════════════════════════════════════════════════════════════════
 
 // ── NOME DA MARCA — altere aqui para mudar em todo o site ────────
-const BRAND_NAME = 'Off Clothing Bath';
+const BRAND_NAME = 'hiume';
 // ── CONFIGURAÇÃO — URL do backend (Railway) ──────────────────────
 const API = 'https://clothing-site-production.up.railway.app';
 
@@ -1594,6 +1601,7 @@ async function submitOrder() {
     hideLoading();
     btn.disabled = false;
     btn.textContent = 'Confirmar e pagar';
+    if (/Cupom/.test(err.message)) { couponApplied = false; renderOrderSummary(); }
     showToast('Erro ao iniciar pagamento: ' + err.message);
   }
 }
@@ -1961,7 +1969,7 @@ async function renderAdminOrders() {
         <td>${payBadge(o.payment_status)}</td>
         <td>${statusBadge(o.order_status)}</td>
         <td style="color:var(--muted)">${new Date(o.created_at).toLocaleDateString('pt-BR')}</td>
-        <td><button class="admin-edit-btn" onclick="openOrderDetail('${o.order_number}')">Abrir</button></td>
+        <td><button class="admin-edit-btn" onclick="openOrderDetail('${esc(o.order_number)}')">Abrir</button></td>
       </tr>`).join('')}</tbody>
     </table>
     </div>`;
@@ -1974,7 +1982,7 @@ async function openOrderDetail(orderNumber) {
   const body = document.getElementById('admin-body');
   body.innerHTML = '<p style="color:var(--muted);font-size:14px;padding:16px 0">Carregando pedido...</p>';
   try {
-    const order = await apiFetch(`/api/orders/${orderNumber}`);
+    const order = await apiFetch(`/api/admin/orders/${encodeURIComponent(orderNumber)}`);
     const items = typeof order.items === 'string' ? JSON.parse(order.items) : order.items;
     const statusOptions = ['received', 'pending', 'confirmed', 'dispatched', 'in_transit', 'delivered']
       .map(s => `<option value="${s}" ${s === order.order_status ? 'selected' : ''}>${{ received: 'Recebido', pending: 'Pendente', confirmed: 'Confirmado', dispatched: 'Despachado', in_transit: 'Em trânsito', delivered: 'Entregue' }[s]}</option>`).join('');
@@ -2004,7 +2012,7 @@ async function openOrderDetail(orderNumber) {
           <div class="afield"><label>Novo status</label><select id="new-status-select" style="height:40px">${statusOptions}</select></div>
           <div class="afield" style="flex:2"><label>Código de rastreio (opcional)</label><input id="tracking-input" placeholder="PN000000000BR" value="${esc(order.tracking_code || '')}" style="height:40px"></div>
           <div class="afield" style="flex:2"><label>Observação (opcional)</label><input id="status-note-input" placeholder="Ex: Enviado via Correios" style="height:40px"></div>
-          <button class="status-save-btn" onclick="updateOrderStatus('${order.order_number}')">Salvar status</button>
+          <button class="status-save-btn" onclick="updateOrderStatus('${esc(order.order_number)}')">Salvar status</button>
         </div>
       </div>`;
   } catch (err) {
