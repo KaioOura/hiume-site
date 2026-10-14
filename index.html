@@ -924,7 +924,7 @@ footer{background:var(--dark);padding:60px 48px 32px;}
 // ════════════════════════════════════════════════════════════════
 // STACK
 //   Frontend : este arquivo (index.html) — Netlify (arrastar pasta)
-//   Backend  : server.js — Node/Express — Railway (repo: KaioOura/clothing-site, branch main)
+//   Backend  : server.js — Node/Express — Railway (repo privado KaioOura/hiume-backend, branch master)
 //   DB       : PostgreSQL — Railway (mesmo projeto, env production)
 //   Pagamento: Mercado Pago Checkout Pro — redireciona usuário para o MP e volta com ?status=
 //   E-mail   : Resend (domínio de teste — só entrega ao e-mail da conta Resend)
@@ -965,7 +965,7 @@ footer{background:var(--dark);padding:60px 48px 32px;}
 //   cart[]           — itens na sacola: [{ product, qty }]
 //   selectedProduct  — produto aberto na tela de detalhe
 //   payMethod        — 'card' | 'pix'
-//   couponApplied    — boolean (cupom OCB10 = 10% off)
+//   couponApplied    — boolean (cupom HIUME10 = 10% off)
 //   adminToken       — JWT do admin (sessionStorage)
 //
 // SEÇÕES DESTE ARQUIVO
@@ -1396,7 +1396,7 @@ function renderOrderSummary() {
   ot.innerHTML = `
     ${disc > 0 ? `<div class="os-row disc"><span>Desconto promoção</span><span>- ${fmt(disc)}</span></div>` : ''}
     <div class="os-row"><span>Frete</span><span>${frete === 0 ? 'Grátis' : fmt(frete)}</span></div>
-    ${couponDisc > 0 ? `<div class="os-row disc"><span>Cupom OCB10</span><span>- ${fmt(couponDisc)}</span></div>` : ''}
+    ${couponDisc > 0 ? `<div class="os-row disc"><span>Cupom HIUME10</span><span>- ${fmt(couponDisc)}</span></div>` : ''}
     ${pixDisc > 0 ? `<div class="os-row disc"><span>Desconto Pix (5%)</span><span>- ${fmt(pixDisc)}</span></div>` : ''}
     <div class="os-total"><span>Total</span><span>${fmt(grand)}</span></div>`;
 }
@@ -1414,7 +1414,7 @@ function setPayMethod(m) {
 
 function applyCoupon() {
   const v = document.getElementById('coupon-input').value.trim().toUpperCase();
-  if (v === 'OCB10') { couponApplied = true; renderOrderSummary(); showToast('Cupom aplicado! 10% de desconto'); }
+  if (v === 'HIUME10') { couponApplied = true; renderOrderSummary(); showToast('Cupom aplicado! 10% de desconto'); }
   else showToast('Cupom inválido');
 }
 
@@ -1584,7 +1584,7 @@ async function submitOrder() {
     address_city:   city,
     address_state:  state,
     items: cart.map(i => ({ id: i.product.id, qty: i.qty })),
-    coupon_code: couponApplied ? 'OCB10' : null,
+    coupon_code: couponApplied ? 'HIUME10' : null,
     payment_method: payMethod,
   };
 
