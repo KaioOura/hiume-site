@@ -2,3 +2,4 @@
 .gitattributes
 .assetsignore
 wrangler.jsonc
+.wrangler
