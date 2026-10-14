@@ -629,7 +629,7 @@ footer{background:var(--dark);padding:60px 48px 32px;}
       <div class="footer-col"><h4>A marca</h4><ul>
         <li><a onclick="navigate('historia')">Nossa história</a></li>
         <li><a onclick="navigate('sustentabilidade')">Sustentabilidade</a></li>
-        <li><a onclick="window.open('https://instagram.com','_blank')">Instagram</a></li>
+        <li><a onclick="window.open('https://instagram.com/hiume','_blank')">Instagram</a></li>
       </ul></div>
     </div>
     <div class="footer-legal">
@@ -638,9 +638,9 @@ footer{background:var(--dark);padding:60px 48px 32px;}
       <p><strong>Hiume Clothing</strong> · CNPJ 69.589.763/0001-16 · Rua Marina Crespi, 232 · Mooca, São Paulo/SP · CEP 03112-090. Para dúvidas: <a onclick="window.open('https://wa.me/5511999999999','_blank')" style="color:var(--accent-light);cursor:pointer">WhatsApp</a></p>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 <span class="brand-name"></span> — Todos os direitos reservados</p>
+      <p>© <span class="ano"></span> <span class="brand-name"></span> — Todos os direitos reservados</p>
       <div class="footer-social">
-        <a onclick="window.open('https://instagram.com','_blank')">Instagram</a>
+        <a onclick="window.open('https://instagram.com/hiume','_blank')">Instagram</a>
         <a onclick="window.open('https://wa.me/5511999999999','_blank')">WhatsApp</a>
       </div>
     </div>
@@ -674,7 +674,7 @@ footer{background:var(--dark);padding:60px 48px 32px;}
   </div>
   <footer>
     <div class="footer-bottom" style="padding:24px 40px;">
-      <p>© 2025 <span class="brand-name"></span></p>
+      <p>© <span class="ano"></span> <span class="brand-name"></span></p>
       <div class="footer-social"><a onclick="goHome()" style="cursor:pointer">← Voltar à loja</a></div>
     </div>
   </footer>
@@ -694,7 +694,7 @@ footer{background:var(--dark);padding:60px 48px 32px;}
     </div>
     <button class="btn-prim" onclick="goHome()" style="margin-top:32px">Explorar a coleção</button>
   </div>
-  <footer><div class="footer-bottom" style="padding:24px 40px;"><p>© 2025 <span class="brand-name"></span></p></div></footer>
+  <footer><div class="footer-bottom" style="padding:24px 40px;"><p>© <span class="ano"></span> <span class="brand-name"></span></p></div></footer>
 </div>
 
 <!-- ─── SUSTENTABILIDADE ───────────────────────────────────────────── -->
@@ -710,7 +710,7 @@ footer{background:var(--dark);padding:60px 48px 32px;}
     </div>
     <button class="btn-prim" onclick="goHome()" style="margin-top:32px">Conhecer a coleção</button>
   </div>
-  <footer><div class="footer-bottom" style="padding:24px 40px;"><p>© 2025 <span class="brand-name"></span></p></div></footer>
+  <footer><div class="footer-bottom" style="padding:24px 40px;"><p>© <span class="ano"></span> <span class="brand-name"></span></p></div></footer>
 </div>
 
 <!-- ─── SOBRE / FAQ ────────────────────────────────────────────────── -->
@@ -726,7 +726,7 @@ footer{background:var(--dark);padding:60px 48px 32px;}
     <p>Cada produto possui uma tabela de medidas na página do produto. Em caso de dúvida, suba um tamanho para peças oversized.</p>
     <button class="btn-prim" onclick="goHome()" style="margin-top:32px">Voltar à loja</button>
   </div>
-  <footer><div class="footer-bottom" style="padding:24px 40px;"><p>© 2025 <span class="brand-name"></span></p></div></footer>
+  <footer><div class="footer-bottom" style="padding:24px 40px;"><p>© <span class="ano"></span> <span class="brand-name"></span></p></div></footer>
 </div>
 
 <!-- ─── CHECKOUT ───────────────────────────────────────────────────── -->
@@ -865,7 +865,7 @@ footer{background:var(--dark);padding:60px 48px 32px;}
 
     <div id="order-status-content"></div>
   </div>
-  <footer><div class="footer-bottom" style="padding:24px 40px;"><p>© 2025 <span class="brand-name"></span></p><a onclick="goHome()" style="font-size:12px;color:rgba(253,250,247,.4);cursor:pointer;">← Voltar</a></div></footer>
+  <footer><div class="footer-bottom" style="padding:24px 40px;"><p>© <span class="ano"></span> <span class="brand-name"></span></p><a onclick="goHome()" style="font-size:12px;color:rgba(253,250,247,.4);cursor:pointer;">← Voltar</a></div></footer>
 </div>
 
 <!-- ─── CARRINHO ────────────────────────────────────────────────────── -->
@@ -2046,6 +2046,7 @@ async function updateOrderStatus(orderNumber) {
 // Aplica BRAND_NAME em todos os elementos da página
 document.getElementById('page-title').textContent = BRAND_NAME;
 document.querySelectorAll('.brand-name').forEach(el => el.textContent = BRAND_NAME);
+document.querySelectorAll('.ano').forEach(el => el.textContent = new Date().getFullYear());
 
 // Atalho secreto para abrir o admin: Ctrl+Shift+A
 document.addEventListener('keydown', e => {
