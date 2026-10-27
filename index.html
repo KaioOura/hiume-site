@@ -1808,7 +1808,15 @@ async function doLogin() {
 // ADMIN — PAINEL
 // ════════════════════════════════════════════════════════════════
 function openAdmin() { renderAdminTab(currentAdminTab); document.getElementById('admin-overlay').classList.add('open'); }
-function closeAdmin() { document.getElementById('admin-overlay').classList.remove('open'); }
+// Fechar o painel encerra a sessão: o token é invalidado no servidor e some do navegador
+function closeAdmin() {
+  document.getElementById('admin-overlay').classList.remove('open');
+  if (adminToken) {
+    fetch(API + '/api/admin/logout', { method: 'POST', headers: { Authorization: `Bearer ${adminToken}` } }).catch(() => {});
+    adminToken = null;
+    sessionStorage.removeItem('adminToken');
+  }
+}
 
 function switchAdminTab(tab, btn) {
   currentAdminTab = tab;
